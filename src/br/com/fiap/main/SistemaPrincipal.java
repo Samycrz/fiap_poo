@@ -1,3 +1,5 @@
+package br.com.fiap.main;
+
 import br.com.fiap.model.Passageiro;
 
 public class SistemaPrincipal {
