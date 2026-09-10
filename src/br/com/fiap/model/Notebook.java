@@ -7,21 +7,13 @@ public class Notebook {
     private double nivelBateria;
     private int espacoLivreGb;
     private boolean conectadoWifi;
-    private Processador processador;
 
-    //Construtor atualizado para receber o Processador
-    public Notebook(String marca, int armazenamentoTotalGb, Processador processador) {
-        this.setMarca(marca);
-        this.setEspacoLivreGb(armazenamentoTotalGb);
-        this.setProcessador(processador);
-        this.setLigado(false);
-        this.setNivelBateria(15.0);
-        this.setConectadoWifi(false);
-    }
-
-    //Método genérico na Superclasse
-    public void calcularAutonomiaBateria() {
-        System.out.println("Autonomia padrão do notebook estimada em 4 horas.");
+    public Notebook(String marca, int armazenamentoTotalGb) {
+        this.marca = marca;
+        this.espacoLivreGb = armazenamentoTotalGb;
+        this.ligado = false;
+        this.nivelBateria = 15.0;
+        this.conectadoWifi = false;
     }
 
     // --- MÉTODOS DE COMPORTAMENTO ---
@@ -67,15 +59,14 @@ public class Notebook {
         System.out.println("Conexão estabelecida com sucesso na rede: " + nomeRede);
     }
 
-    //GETTERS
+    // --- GETTERS (Passo 4 de Mídia.jpg) ---
     public String getMarca() { return this.marca; }
     public boolean isLigado() { return this.ligado; }
     public double getNivelBateria() { return this.nivelBateria; }
     public int getEspacoLivreGb() { return this.espacoLivreGb; }
-    public boolean isConectadoWifi() { return this.conectadoWifi; }
-    public Processador getProcessador() { return this.processador; }
+    public boolean isConectadoWifi() { return this.conectadoWifi; } // Adicionado
 
-    //SETTERS
+    // --- SETTERS (Passo 4 e 5 de Mídia.jpg) ---
     public void setMarca(String marca) {
         this.marca = marca;
     }
@@ -92,11 +83,7 @@ public class Notebook {
         this.conectadoWifi = conectadoWifi;
     }
 
-    public void setProcessador(Processador processador) {
-        this.processador = processador;
-    }
-
-    // Regra Especial do Set
+    // Regra Especial do Set (Passo 5 da missão)
     public void setEspacoLivreGb(int espacoLivreGb) {
         if (espacoLivreGb < 0) {
             System.out.println("Erro de Validação: O armazenamento não pode aceitar valores negativos!");
