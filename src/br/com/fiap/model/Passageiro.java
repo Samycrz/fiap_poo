@@ -1,17 +1,17 @@
 package br.com.fiap.model;
 
 public class Passageiro {
-    public String nome;
-    public String cpf;
-    public double saldo;
+    private String nome;
+    private String cpf;
+    private double saldo;
     private boolean contaAtiva;
 
     // Construtor
     public Passageiro(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.saldo = 0.0;
-        this.contaAtiva = true;
+        this.setNome(nome);
+        this.setCpf(cpf);
+        this.setSaldo(0.0);
+        this.setContaAtiva(true);
     }
 
 
@@ -88,7 +88,14 @@ public class Passageiro {
     }
 
     public String getNome() { return this.nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
     public String getCpf() { return this.cpf; }
+    public void setCpf(String cpf) { this.cpf = cpf; }
+
     public double getSaldo() { return this.saldo; }
+    private void setSaldo(double saldo) { this.saldo = saldo; }
+
     public boolean isContaAtiva() { return this.contaAtiva; }
+    public void setContaAtiva(boolean contaAtiva) { this.contaAtiva = contaAtiva; }
 }

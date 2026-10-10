@@ -1,33 +1,37 @@
 package br.com.fiap.main;
 
 import br.com.fiap.model.Notebook;
+import br.com.fiap.model.NotebookGamer;
+import br.com.fiap.model.NotebookCorporativo;
+import br.com.fiap.model.Processador;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SistemaPrincipal2 {
 
     public static void main(String[] args) {
+        //Instanciando os objetos associados
+        Processador procGamer = new Processador("Intel Core i9", 3.5);
+        Processador procCorp = new Processador("Intel Core i5", 2.4);
 
-        Notebook meuNotebook = new Notebook("Asus", 256);
+        // Instanciando as filhas (Herança)
+        NotebookGamer gamer = new NotebookGamer("Alienware", 1000, procGamer, true);
+        NotebookCorporativo corporativo = new NotebookCorporativo("Dell Latitude", 512, procCorp, true);
 
-        System.out.println("--- Teste 1: Tentando conectar desligado ---");
-        meuNotebook.conectarWifi("Rede_Casa");
+        System.out.println("--- Missão 4: Teste da Associação ---");
+        System.out.println("O Notebook " + gamer.getMarca() + " tem o processador: " + gamer.getProcessador().getModelo());
 
-        System.out.println("\n--- Ligando a Máquina ---");
-        meuNotebook.ligar();
+        System.out.println("\n--- Missão 6: Teste de Fogo do Polimorfismo ---");
+        // Criando a Lista tipada com a Superclasse e adicionando as Filhas
+        List<Notebook> frota = new ArrayList<>();
+        frota.add(gamer);
+        frota.add(corporativo);
 
-        System.out.println("\n--- Teste 3: Conectando à Rede ---");
-        meuNotebook.conectarWifi("Rede_Casa");
-
-        System.out.println("\n--- Resolvendo a Bateria e Atualizando ---");
-        meuNotebook.carregarBateria(80.0);
-
-        // --- CUMPRINDO O PASSO 6 DA MISSÃO (Mídia.jpg) ---
-        System.out.println("\n--- Teste da Regra Especial no Set (Passo 6) ---");
-        System.out.println("Armazenamento antes de tentar burlar: " + meuNotebook.getEspacoLivreGb() + "GB");
-
-        // Tentando forçar o estado para algo inconsistente (negativo)
-        meuNotebook.setEspacoLivreGb(-50);
-
-        // Comprovando que a classe ignorou o ataque e manteve o estado real
-        System.out.println("Armazenamento atual no objeto pós-tentativa: " + meuNotebook.getEspacoLivreGb() + "GB");
+        // Prova do polimorfismo
+        for (Notebook note : frota) {
+            System.out.println("\nAvaliando autonomia do notebook da " + note.getMarca() + "...");
+            // O Java descobre dinamicamente qual versão do método executar
+            note.calcularAutonomiaBateria();
+        }
     }
 }
